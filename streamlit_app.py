@@ -67,3 +67,5 @@ my_data_row = my_cur.fetchall()
 streamlit.header("The fruitload list contains:")
 streamlit.dataframe(my_data_row)
 
+title = st.text_input('Movie title', 'Life of Brian')
+st.write('The current movie title is', title)
