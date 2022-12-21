@@ -27,6 +27,13 @@ fruits_to_show = my_fruit_list.loc[fruits_selected]
 # Display the table on the page.
 streamlit.dataframe(fruits_to_show)
 
+my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+my_cur = my_cnx.cursor()
+my_cur.execute("SELECT * from fruityvice")
+my_data_row = my_cur.fetchall()
+streamlit.header("The fruitload list contains:")
+streamlit.dataframe(my_data_row)
+
 #New Section to display FruityVice api responses
 streamlit.header("Fruityvice Fruit Advice!")
 try:
@@ -37,5 +44,5 @@ try:
       fruityvice_response = requests.get("https://fruityvice.com/api/fruit/all" + fruit_choice)
       fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
       streamlit.dataframe(fruityvice_normalized)
-  except URLError as E:
+  except URLError as e:
       streamlit.error()
