@@ -29,7 +29,7 @@ fruits_to_show = my_fruit_list.loc[fruits_selected]
 streamlit.dataframe(fruits_to_show)
 
 
-my_cur = my_cnx.cursor()
+#my_cur = my_cnx.cursor()
 my_cur.execute("SELECT * from fruityvice")
 streamlit.header("The fruitload list contains:")
 #Snowflake-related functions
