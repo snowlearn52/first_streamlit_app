@@ -30,7 +30,4 @@ streamlit.dataframe(fruits_to_show)
 
 
 
-my_cur.execute("SELECT * from fruit_load_list")
-streamlit.header("The fruitload list contains:")
-
 
