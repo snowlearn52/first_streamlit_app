@@ -31,12 +31,12 @@ streamlit.dataframe(fruits_to_show)
 #New Sction to display fruityvice api response
 streamlit.header('Fruityvice Fruit Advice!')
 try:
-  fruit_choice = streamlit.text_input('What fruit would you like information about?','Kiwi'
+  fruit_choice = streamlit.text_input('What fruit would you like information about?')
   if not fruit_choice:
-                                      streamlit.write('The user entered ', fruit_choice)
-                                      else:
-                                      fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
-                                      fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
-                                      streamlit.dataframe(fruityvice_normalized)
-                                      except URL error as e:
-                                      streamlit.error()
+    streamlit.write('The user entered ', fruit_choice)
+    else:
+      fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
+      fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
+      streamlit.dataframe(fruityvice_normalized)
+      except URL error as e:
+        streamlit.error()
