@@ -26,13 +26,11 @@ fruits_selected = streamlit.multiselect("Pick some fruits:", list(my_fruit_list.
 fruits_to_show = my_fruit_list.loc[fruits_selected]
 streamlit.dataframe(fruits_to_show)
 
-#add_my_fruit = streamlit.text_input('What fruit would you like to add?')
-#streamlit.write('Thanks for adding ', add_my_fruit)
-def insert_row_snowflake(new_fruit):
-  with my_cnx.cursor as my_cur:
-    my_cur.execute("insert into fruit_load_list values ('" + new_fruit +"')")
-    return "Thanks for adding " + new_fruit
 add_my_fruit = streamlit.text_input('What fruit would you like to add?')
+def insert_row_snowflake(add_my_fruit):
+  with my_cnx.cursor as my_cur:
+    my_cur.execute("insert into fruit_load_list values ('" + add_my_fruit +"')")
+    return "Thanks for adding " + new_fruit
 if streamlit.buuton('Add a fruit to the list'):
   my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
   back_from_function = insert_row_snowflake(add_my_fruit)
